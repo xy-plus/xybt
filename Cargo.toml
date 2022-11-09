@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 elf = "0.6.1"
+memmap = "0.7.0"
+libc = "0.2.137"
