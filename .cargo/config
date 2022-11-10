@@ -1,0 +1,4 @@
+[target.x86_64-unknown-linux-gnu]
+rustflags = [
+    "-Clink-args=-pie -fPIE -Wl,-Ttext-segment=0x780000000000",
+]
