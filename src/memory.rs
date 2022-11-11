@@ -138,3 +138,22 @@ pub fn create_user_stack(
         return stack_top;
     }
 }
+
+pub fn setup_inst_mem() -> u64 {
+    let addr = TRANSLATOR_BASE - STACK_OFFSET;
+    let inst_mem_addr = unsafe {
+        libc::mmap(
+            addr as *mut libc::c_void,
+            STACK_OFFSET as usize,
+            libc::PROT_WRITE | libc::PROT_READ | libc::PROT_EXEC,
+            libc::MAP_FIXED_NOREPLACE
+                | libc::MAP_ANONYMOUS
+                | libc::MAP_PRIVATE
+                | libc::MAP_NORESERVE,
+            -1,
+            0,
+        ) as u64
+    };
+    assert_eq!(addr, inst_mem_addr);
+    return inst_mem_addr;
+}

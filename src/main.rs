@@ -13,6 +13,7 @@ fn main() {
     assert!(args.len() > 1, "no input file");
     let mapped_elf = read_elf(&args[1]);
     // println!("{:#x?}", mapped_elf);
+    // todo: setupBrk(result.dataEnd);
     args.remove(0);
     let env_vars: Vec<String> = env::vars().map(|(k, v)| [k, v].join("=")).collect();
     let user_program_stack_addr = memory::create_user_stack(mapped_elf, &args, &env_vars);
@@ -20,4 +21,8 @@ fn main() {
     let mut registers = REGISTERS::new();
     registers.set_reg(REG::sp, user_program_stack_addr);
     println!("{:#x?}", registers);
+    // todo: init_hash_table();
+    // todo: init_return_stack();
+    let inst_addr = memory::setup_inst_mem();
+    println!("{:#x?}", inst_addr);
 }
