@@ -9,3 +9,11 @@ pub const EF_RISCV_FLOAT_ABI_DOUBLE: u32 = 0x0004;
 pub const EF_RISCV_FLOAT_ABI_QUAD: u32 = 0x0006;
 
 pub const TRANSLATOR_BASE: u64 = 0x780000000000;
+// TODO: use rlimit to get stack size?
+pub const STACK_OFFSET: u64 = 0x7f000000;
+pub const USER_STACK_SIZE: u64 = 8 * 1024 * 1024;
+pub const GUARD_PAGE_SIZE: u64 = 4096;
+pub const USER_STACK_START_ADDR: u64 =
+    TRANSLATOR_BASE - STACK_OFFSET - USER_STACK_SIZE - GUARD_PAGE_SIZE;
+
+pub const AUXC: usize = 16;

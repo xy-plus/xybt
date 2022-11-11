@@ -1,5 +1,11 @@
 # 工作日志
 
+## 2022-11-10
+
+### 拷贝 auxv、envp、argv、argc 到用户栈中
+
+注意栈指针需要 16 位对齐。
+
 ## 2022-11-09
 
 ### 把 translator 放入指定地址
@@ -18,6 +24,8 @@ rustflags = [
     "-Clink-args=-pie -fPIE -Wl,-Ttext-segment=0x780000000000",
 ]
 ```
+
+通过 `readelf a.out -S` 可以看到程序被放到了正确的地址。
 
 ## 2022-11-08
 
