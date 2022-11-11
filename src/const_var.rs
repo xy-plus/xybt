@@ -17,3 +17,4 @@ pub const USER_STACK_START_ADDR: u64 =
     TRANSLATOR_BASE - STACK_OFFSET - USER_STACK_SIZE - GUARD_PAGE_SIZE;
 
 pub const AUXC: usize = 16;
+pub const GENERAL_REGS_NUM: usize = 34;
