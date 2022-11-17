@@ -32,7 +32,7 @@ fn alloc_stack() -> u64 {
 }
 
 pub fn create_user_stack(
-    mapped_elf: MappedElf,
+    mapped_elf: &MappedElf,
     user_args: &Vec<String>,
     env_vars: &Vec<String>,
 ) -> u64 {

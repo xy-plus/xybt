@@ -2,6 +2,12 @@
 
 [日志](./log.md)
 
+## 编译用户程序
+
+```
+riscv64-unknown-linux-gnu-gcc hello.c -static -march=rv64imafd -mabi=lp64d
+```
+
 ## 内存布局
 
 - xybt
