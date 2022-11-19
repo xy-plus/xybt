@@ -4,8 +4,33 @@
 
 ## 编译用户程序
 
+- 直接编译 C 程序
+
+```sh
+riscv64-unknown-linux-gnu-gcc hello.c -o hello.out -static -march=rv64imafd -mabi=lp64d
 ```
-riscv64-unknown-linux-gnu-gcc hello.c -static -march=rv64imafd -mabi=lp64d
+
+- 编译汇编程序
+
+```sh
+riscv64-unknown-linux-gnu-as hello.S -march=rv64imafd -mabi=lp64d -o hello.o
+riscv64-unknown-linux-gnu-ld -static -o hello.out hello.o
+cargo run hello.out
+```
+
+## 运行
+
+- 使用 xybt
+
+```sh
+cargo run hello.out
+```
+
+- 使用 qemu
+
+```sh
+qemu-riscv64 hello.out
+qemu-riscv64 -d in_asm,out_asm hello.out  # 带一些信息
 ```
 
 ## 内存布局

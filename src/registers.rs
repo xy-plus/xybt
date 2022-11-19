@@ -11,13 +11,14 @@ numeric_enum! {
         s0=8, // s0=fp
         s1=9, a0=10, a1=11, a2=12, a3=13, a4=14, a5=15, a6=16,
         a7=17, s2=18, s3=19, s4=20, s5=21, s6=22, s7=23, s8=24,
-        s9=25, s10=26, s11=27, t3=28, t4=29, t5=30, t6=31, pc=32
+        s9=25, s10=26, s11=27, t3=28, t4=29, t5=30, t6=31, pc=32,
+        invalid=33
     }
 }
 
 impl Default for REG {
     fn default() -> Self {
-        REG::zero
+        REG::invalid
     }
 }
 
