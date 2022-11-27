@@ -18,5 +18,6 @@ pub const USER_STACK_START_ADDR: u64 =
 
 pub const AUXC: usize = 16;
 pub const GENERAL_REGS_NUM: usize = 34;
+pub const REPLACE_REGS_NUM: usize = 3;
 
 pub const BLOCK_CACHE_SIZE: usize = 64;

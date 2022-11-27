@@ -1,4 +1,4 @@
-use crate::registers::REG;
+use crate::registers::RiscReg;
 use numeric_enum_macro::numeric_enum;
 
 numeric_enum! {
@@ -287,11 +287,11 @@ pub struct RiscInst {
     pub addr: u64,
     pub mnem: MNEM, // todo: what is it?
     pub optype: OpType,
-    pub reg_src_1: REG,
-    pub reg_src_2: REG,
-    pub reg_dest: REG,
+    pub reg_src_1: RiscReg,
+    pub reg_src_2: RiscReg,
+    pub reg_dest: RiscReg,
     pub imm: i64,
-    pub reg_src_3: REG,
+    pub reg_src_3: RiscReg,
     pub rounding_mode: u32,
 }
 
@@ -299,23 +299,23 @@ pub struct RawRiscInst(pub u32);
 
 impl RawRiscInst {
     // extract rd register number bit[11:7]
-    pub fn extract_rd(&self) -> REG {
-        return REG::try_from(self.0 >> 7 & 0x1f).unwrap();
+    pub fn extract_rd(&self) -> RiscReg {
+        return RiscReg::try_from(self.0 >> 7 & 0x1f).unwrap();
     }
 
     // extract rs1 register number bit[19:15]
-    pub fn extract_rs1(&self) -> REG {
-        return REG::try_from(self.0 >> 15 & 0x1f).unwrap();
+    pub fn extract_rs1(&self) -> RiscReg {
+        return RiscReg::try_from(self.0 >> 15 & 0x1f).unwrap();
     }
 
     // extract rs2 register number bit[24:20]
-    pub fn extract_rs2(&self) -> REG {
-        return REG::try_from(self.0 >> 20 & 0x1f).unwrap();
+    pub fn extract_rs2(&self) -> RiscReg {
+        return RiscReg::try_from(self.0 >> 20 & 0x1f).unwrap();
     }
 
     // extract rs3 register number bit[31:27]
-    pub fn extract_rs3(&self) -> REG {
-        return REG::try_from(self.0 >> 27 & 0x1f).unwrap();
+    pub fn extract_rs3(&self) -> RiscReg {
+        return RiscReg::try_from(self.0 >> 27 & 0x1f).unwrap();
     }
 
     pub fn extract_op(&self) -> OpCode {

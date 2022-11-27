@@ -1,5 +1,5 @@
 use crate::instruction::{OpCode, OpType, RawRiscInst, RiscInst, MNEM};
-use crate::registers::REG;
+use crate::registers::RiscReg;
 
 pub fn parse_instruction(parse_buf: &mut RiscInst) {
     let raw_inst = unsafe { RawRiscInst(*(parse_buf.addr as *const u32)) };
@@ -22,7 +22,7 @@ pub fn parse_instruction(parse_buf: &mut RiscInst) {
         OpCode::AUIPC => {
             parse_buf.optype = OpType::IMMEDIATE;
             parse_buf.mnem = MNEM::AUIPC;
-            parse_buf.reg_src_1 = REG::invalid;
+            parse_buf.reg_src_1 = RiscReg::invalid;
             parse_buf.imm = raw_inst.extract_imm_U() as i64;
         }
         OpCode::SYSTEM => {
