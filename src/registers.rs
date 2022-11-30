@@ -145,6 +145,11 @@ impl RegInfo {
             unimplemented!()
         }
     }
+
+    pub fn get_gp_map_reg(&self, risc_reg: RiscReg) -> Register {
+        assert!(self.gp_mapped[risc_reg as usize]);
+        return self.gp_map[risc_reg as usize];
+    }
 }
 
 pub fn init_map_context(gp: REGISTERS, inst_mem_addr: u64) -> RegInfo {

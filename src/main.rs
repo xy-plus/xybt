@@ -25,11 +25,11 @@ fn main() {
     // println!("{:#x?}", user_program_stack_addr);
     let mut registers = REGISTERS::new();
     registers.set_reg(RiscReg::sp, user_program_stack_addr);
-    println!("{:#x?}", registers);
+    // println!("{:#x?}", registers);
     // todo: init_hash_table();
     // todo: init_return_stack();
     let inst_mem_addr = memory::setup_inst_mem();
-    println!("{:#x?}", inst_mem_addr);
+    // println!("{:#x?}", inst_mem_addr);
     // todo: context_info *c_info = init_map_context(result.floatBinary);
 
     let next_pc = mapped_elf.entry;
@@ -42,6 +42,9 @@ fn main() {
             break;
         }
         let _cache_loc = translate_block(next_pc, &r_info);
+        let code: extern "C" fn() =
+            unsafe { std::mem::transmute(r_info.inst_mem_addr as *const ()) };
+        (code)();
         // set_cache_entry(next_pc, cache_loc);
         exit = true;
     }
