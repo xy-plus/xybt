@@ -4,18 +4,16 @@
 
 ## 编译用户程序
 
-- 直接编译 C 程序
+- C 程序（暂时没使用）
 
 ```sh
 riscv64-unknown-linux-gnu-gcc hello.c -o hello.out -static -march=rv64imafd -mabi=lp64d
 ```
 
-- 编译汇编程序
+- 汇编程序
 
 ```sh
-riscv64-unknown-linux-gnu-as hello.S -march=rv64imafd -mabi=lp64d -o hello.o
-riscv64-unknown-linux-gnu-ld -static -o hello.out hello.o
-cargo run hello.out
+make riscv_user
 ```
 
 ## 运行
@@ -23,7 +21,7 @@ cargo run hello.out
 - 使用 xybt
 
 ```sh
-cargo run hello.out
+make run
 ```
 
 - 使用 qemu
