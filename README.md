@@ -64,7 +64,9 @@ stackStart = bottomOfStack = guard protect start = TRANSLATOR_BASE - STACK_OFFSE
 - [x] 为用户程序分配 stack
 - [x] 拷贝 auxv、envp、argv、argc 到用户程序的栈中
 - [x] 设置 inst mem
-- [ ] 初始化用户寄存器
-- [ ] 翻译
-- [ ] 执行
+- [x] 翻译
+- [x] 执行
+- [ ] 保存上下文
+- [ ] 缓存块
+- [ ] 寄存器映射
 - [ ] 其它

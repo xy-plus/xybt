@@ -1,5 +1,56 @@
 # 工作日志
 
+## 2022-12-01
+
+### 运行 hello world
+
+将一块翻译好的 x86 指令复制到指定地址。
+
+跳转过去执行。
+
+目前就不跳回来了，因为中间的 context 啥都没保存，因此只能 print hello world 。
+
+而且寄存器映射也还有点问题。
+
+### syscall id 翻译
+
+目前只有 sys write ，所以就 hardcode 了。
+
+发现一个有意思的事情：i386 和 x86 的 linux syscall table 完全不一样，且用 as 命令编译汇编程序对应 x86 的，nasm 对应 i386 的。且二者编译出来的 binary 的 header 都一样，无法区分用的是哪个 syscall table 。
+
+![](./pic/as_int80.png)
+![](./pic/nasm_syscall.png)
+
+猜测可能就是用 int 80 和 syscall 指令区分二者。
+
+经过实验，ecall 翻译成 int 0x80 会出问题，因此采用翻译成 syscall 。
+
+## 2022-11-30
+
+### 生成 x86 指令
+
+将 RiscInst 通过 crate icde_x86 翻译成对应的 x86 指令。
+
+## 2022-11-19
+
+### 解码 riscv 指令
+
+原始指令由 u32 包装为 RawRiscInst ，然后翻译成更便于使用的 RiscInst 。
+
+## 2022-11-17
+
+### 跳转到待翻译地址
+
+做了翻译的前期准备工作。
+
+## 2022-11-11
+
+### 分配了一片空间，用于存放翻译后的 x86 指令。
+
+在 readme 中增加了 xybt 和 ria-jit 分别的内存布局图。
+
+### 创建了 riscv reg 结构体
+
 ## 2022-11-10
 
 ### 拷贝 auxv、envp、argv、argc 到用户栈中
